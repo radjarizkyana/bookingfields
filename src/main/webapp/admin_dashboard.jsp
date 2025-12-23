@@ -53,8 +53,13 @@
                     <tr class="hover:bg-slate-50 transition duration-150">
                         <td class="p-4 text-slate-500 font-mono text-sm">#<%= b.getId() %></td>
                         <td class="p-4">
-                            <div class="text-sm font-bold text-slate-800">User ID: <%= b.getUserId() %></div>
-                            <div class="text-xs text-slate-500">Field ID: <%= b.getFieldId() %></div>
+                            <div class="text-sm font-bold text-slate-800">
+                                <%= b.getUsername() %>
+                            </div>
+
+                            <div class="text-xs text-slate-400">
+                                User ID: <%= b.getUserId() %> | Field ID: <%= b.getFieldId() %>
+                            </div>
                         </td>
                         <td class="p-4">
                             <div class="text-sm text-slate-800"><%= b.getBookingDate() %></div>

@@ -10,6 +10,7 @@ public class Booking {
     private int hours;
     private double totalCost;
     private String status; 
+    private String username;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -37,4 +38,7 @@ public class Booking {
     
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 }

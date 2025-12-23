@@ -46,10 +46,15 @@ public class BookingDAO {
     // Ambil SEMUA data untuk Admin
     public List<Booking> findAll() {
         List<Booking> list = new ArrayList<>();
-        String sql = "SELECT * FROM bookings ORDER BY id DESC";
+            String sql = "SELECT b.*, u.username " + 
+                     "FROM bookings b " +
+                     "JOIN users u ON b.user_id = u.id " +
+                     "ORDER BY b.id DESC";
+
         try (Connection c = DBConnection.getConnection();
              Statement st = c.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
+
             while (rs.next()) {
                 Booking b = new Booking();
                 b.setId(rs.getInt("id"));
@@ -58,8 +63,12 @@ public class BookingDAO {
                 b.setBookingDate(rs.getString("booking_date"));
                 b.setStartTime(rs.getString("start_time"));
                 b.setEndTime(rs.getString("end_time"));
-                b.setTotalCost(rs.getDouble("total_cost")); // WAJIB ADA AGAR HARGA TIDAK 0.0
-                b.setStatus(rs.getString("status"));       // WAJIB ADA AGAR AKSI MUNCUL
+                b.setTotalCost(rs.getDouble("total_cost"));
+                b.setStatus(rs.getString("status"));
+
+                // AMBIL USERNAME DARI HASIL JOIN
+                b.setUsername(rs.getString("username")); 
+
                 list.add(b);
             }
         } catch (Exception e) { e.printStackTrace(); }
